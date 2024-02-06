@@ -10,8 +10,12 @@ public class HomeControllers {
    public String index(){
        return "index";
    }
-   @GetMapping("/product")
-    public String product(){
-      return "product";
-   }
+//   @GetMapping("/product")
+//    public String product(){
+//      return "product";
+//   }
+//   @GetMapping("/checkout")
+//    public String checkout(){
+//      return "checkoutpage";
+//    }
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkout Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        h1 {
+            color: blue;
+        }
+        button {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+        }
+        td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        .footer {
+            color: green;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f2f2f2;
+            text-align: center;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Checkout Page</h1>
+    <table id="productTable">
+        <!-- Your table rows go here -->
+    </table>
+    <div id="totals">
+        Subtotal: $<span id="subtotal">0.00</span><br/>
+        Sale Tax (13%): $<span id="saleTax">0.00</span><br/>
+        Total: $<span id="total">0.00</span><br/>
+    </div>
+</div>
+<script>
+    // Sample data - replace this with actual product data
+    const products = [
+        {id:'760618965', name:'Ipad Pro 12', price:2200},
+        {id:'685631888', name:'Mac Book Pro M2', price:4200}
+    ];
+
+    const table = document.getElementById('productTable');
+    let subtotal = 0;
+
+    products.forEach(product => {
+        const row = table.insertRow();
+        row.insertCell().textContent = product.id;
+        row.insertCell().textContent = product.name;
+        row.insertCell().textContent = `$${product.price.toFixed(2)}`;
+
+        subtotal += product.price;
+    });
+
+    document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+    const saleTax = subtotal * .13; // Assuming a tax rate of 13%
+    document.getElementById('saleTax').textContent = saleTax.toFixed(2);
+    const total = subtotal + saleTax;
+    document.getElementById('total').textContent = total.toFixed(2);
+</script>
+</body>
+</html>
+
