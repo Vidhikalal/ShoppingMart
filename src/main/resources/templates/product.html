@@ -6,102 +6,64 @@
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
     <link rel="stylesheet" href="../static/css/header.css" th:href="@{css/header.css}">
     <link rel="stylesheet" href="../static/css/footer.css" th:href="@{css/footer.css}">
-    <title>Product Page</title>
+    <title>Shopping Store</title>
+
+
     <style>
-        /* CSS styles for layout and design */
-        /* You can customize this CSS as needed */
-        /* Ensure the CSS file is linked properly */
-        /* Header and Footer styles */
-        header, footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* Content container */
-        .content {
-            margin: 20px auto;
-            width: 80%;
-            text-align: center;
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
         }
 
-        /* Form styles */
-        form {
-            margin-bottom: 20px;
+        nav ul li:last-child {
+            margin-right: 0;
         }
 
-        form input[type="text"] {
-            width: 200px;
-            padding: 5px;
-            margin-right: 10px;
-        }
-
-        form input[type="submit"] {
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Product list styles */
-        .product-list {
-            margin-top: 20px;
-        }
-
-        .product-item {
-            display: inline-block;
-            margin: 0 10px;
+        nav ul li a {
+            text-decoration: none;
         }
     </style>
 </head>
+
 <body>
-
-<header>
-    <!-- Header content with navigation links -->
+<div class="container">
+    <h1>Vidhi's Store</h1>
     <nav>
-        <a href="index.html">Homepage</a> |
-        <a href="product.html">Product</a> |
-        <a href="shoppingpage.html">Shopping Page</a> |
-        <a href="checkoutpage.html">Checkout</a>
-    </nav>
-</header>
-
-<div class="content">
-    <h1>Welcome to Our Online Store</h1>
-    <img src="Images/shoppingstore.png" alt="Welcome Image">
-
-    <!-- Product form -->
-    <form id="add-product-form">
-        <label for="product-name">Product Name:</label>
-        <input type="text" id="product-name" name="productName" required>
-        <input type="submit" value="Add Product">
-    </form>
-
-    <!-- Product list -->
-    <div class="product-list">
-        <h2>Product List</h2>
-        <ul id="product-list">
-            <!-- Product items will be added dynamically here -->
+        <ul>
+            <li><a href="#">Home Page</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Shopping</a></li>
+            <li><a href="#">Checkout</a></li>
         </ul>
-    </div>
+    </nav>
+    <table id="productTable">
+        <!-- Your table rows go here -->
+    </table>
+    <form id="productForm">
+        <input type="text" id="productId" placeholder="Id">
+        <input type="text" id="productName" placeholder="Name">
+        <input type="number" id="productPrice" placeholder="Price">
+        <button type="submit">Add Product!</button>
+    </form>
 </div>
+</body>
 
-<footer th:replace="~{HeaderAndFooter::footer}">
-    Copyright © Vidhi Kalal 991706094
-</footer>
 
-<!-- JavaScript code to handle form submission and product list -->
 <script>
-    // JavaScript code to handle form submission
+
     document.getElementById('add-product-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
         var productName = document.getElementById('product-name').value;
         addProduct(productName);
     });
 
-    // JavaScript code to add product to the product list
+
     function addProduct(productName) {
         // Generate a 9-digit random product id
         var productId = Math.floor(100000000 + Math.random() * 900000000);
@@ -114,5 +76,4 @@
     }
 </script>
 
-</body>
 </html>
