@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <title>HeaderAndFooter</title>
+</head>
+<body>
+<header th:fragment="Header">
+    <h1>Vidhi's Store</h1>
+</header>
+<main>
+    Some content in the main tag.
+</main>
+<footer th:fragment="Footer">
+    Sheridan College&nbsp;&nbsp;<span class='hart'>&#9825;</span>&nbsp;&nbsp;
+    <span id="footer-copyright" style="font-size:10pt;">Copyright &copy; Vidhi Kalal</span>
+</footer>
+</body>
+</html>
