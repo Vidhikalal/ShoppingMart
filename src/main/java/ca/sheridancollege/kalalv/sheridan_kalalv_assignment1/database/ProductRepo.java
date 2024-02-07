@@ -8,7 +8,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;//
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 //
 //import ca.sheridancollege.kalalv.sheridan_kalalv_assignment1.beans.Products;
 //import org.springframework.data.jpa.repository.Query;
@@ -61,7 +64,19 @@ public class ProductRepo {
         String sql = "SELECT COUNT(*) FROM PRODUCTS"; // Assuming you have a table named shopping_cart
         return jdbc.queryForObject(sql, new MapSqlParameterSource(), Integer.class);
     }
-
+    public Map<String, Double> calculateTotalValues() {
+        String sql = "SELECT SUM(price) AS subtotal, " +
+                "SUM(price * 0.13) AS salesTax, " +
+                "SUM(price * 1.13) AS total " +
+                "FROM products";
+        return jdbc.queryForObject(sql, new MapSqlParameterSource(), (rs, rowNum) -> {
+            Map<String, Double> result = new HashMap<>();
+            result.put("subtotal", rs.getDouble("subtotal"));
+            result.put("salesTax", rs.getDouble("salesTax"));
+            result.put("total", rs.getDouble("total"));
+            return result;
+        });
+    }
 }
 
 

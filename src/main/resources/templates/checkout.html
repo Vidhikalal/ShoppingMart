@@ -49,9 +49,9 @@
         </tr>
     </table>
     <div id="totals">
-        Subtotal: $<span id="subtotal">0.00</span><br/>
-        Sale Tax (13%): $<span id="saleTax">0.00</span><br/>
-        Total: $<span id="total">0.00</span><br/>
+        Subtotal: $<span th:text="${subtotal}" id="subtotal">0.00</span><br/>
+        Sale Tax (13%): $<span th:text="${salesTax}" id="saleTax">0.00</span><br/>
+        Total: $<span th:text="${total}" id="total">0.00</span><br/>
     </div>
 
 </div>

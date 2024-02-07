@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
+
 @Controller
 public class HomeControllers {
 
@@ -51,10 +53,21 @@ public class HomeControllers {
 ////       model.addAttribute("product",new Products());
 ////       return "shopping";
 ////   }
-   @GetMapping("/checkout")
-    public String checkout(Model model){
-       model.addAttribute("productList", pr.getAllProducts());
-       model.addAttribute("product", new Products());
-      return "checkout";
-    }
+@GetMapping("/checkout")
+public String checkout(Model model) {
+    // Calculate subtotal, sales tax, and total
+    Map<String, Double> totalValues = pr.calculateTotalValues();
+
+    // Add the calculated values to the model
+    model.addAttribute("subtotal", totalValues.get("subtotal"));
+    model.addAttribute("salesTax", totalValues.get("salesTax"));
+    model.addAttribute("total", totalValues.get("total"));
+
+    // Add other attributes if needed
+    model.addAttribute("productList", pr.getAllProducts());
+    model.addAttribute("product", new Products());
+
+    return "checkout";
+}
+
 }
