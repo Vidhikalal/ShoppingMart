@@ -30,20 +30,20 @@
         }
     </style>
 </head>
-
+<header th:replace="~{HeaderAndFooter::Header}">
+    <h1>Vidhi's Store</h1>
+</header>
 <body>
 <div class="container">
-    <h1>Vidhi's Store</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Home Page</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="shopping.html">Shopping</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-        </ul>
-    </nav>
+
+
 
     <table th:if="${productList != null && productList != ' '}">
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>ProductPrice</th>
+        </tr>
         <tr th:each="s : ${productList}">
             <td th:text="${s.id}">None</td>
             <td th:text="${s.name}">None</td>
@@ -52,12 +52,16 @@
     </table>
     <form method="post" action="#" th:action="@{/addProduct}"
           th:object="${product}">
-        <input type="text" id="productId" placeholder="Id">
-        <input type="text" id="productName" placeholder="Name">
-        <input type="number" id="productPrice" placeholder="Price">
+        <input type="text" id="productId" placeholder="Id" th:field="*{id}">
+        <input type="text" id="productName" placeholder="Name"th:field="*{name}">
+        <input type="number" id="productPrice" placeholder="Price"th:field="*{price}">
         <button type="submit">Add Product!</button>
     </form>
+
 </div>
+<footer th:replace="~{HeaderAndFooter::footer}">
+    Copyright © Vidhi Kalal 991706094
+</footer>
 </body>
 
 

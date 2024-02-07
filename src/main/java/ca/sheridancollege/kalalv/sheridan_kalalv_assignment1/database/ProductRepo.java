@@ -54,6 +54,18 @@ public class ProductRepo{
 
         jdbc.update(sql, params);
     }
+    public void addToCart(Products product) {
+
+        String sql = "INSERT INTO CART (name, price, Id) VALUES (:name, :price, :Id)";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", product.getName());
+        params.addValue("price", product.getPrice());
+        params.addValue("Id", product.getId());
+
+        jdbc.update(sql, params);
+    }
+
+
 
 }
 

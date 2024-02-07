@@ -1,58 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
 
-<header>
-    <h>Shopping Page</h>
-    <nav>
-        <a href="index.html">Homepage</a> |
-        <a href="product.html">Product</a> |
-        <a href="shopping.html">Shopping </a> |
-        <a href="checkout.html">Checkout</a>
-    </nav>
-</header>   <table>
+
+
+<style>
+    /* Add your CSS styles here */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .add-to-cart {
+        text-decoration: none;
+        background-color: #4CAF50;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 5px;
+    }
+
+    .cart-count {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 50%;
+    }
+</style>
+<body>
+<header th:replace="~{HeaderAndFooter::Header}">
+    <h1>Vidhi's Store</h1>
+</header>
+
+<table>
     <thead>
     <tr>
         <th>Product</th>
         <th>Quantity</th>
+
     </tr>
+    <tr th:each="s : ${productList}">
+        <td th:text="${s.id}">None</td>
+        <td th:text="${s.name}">None</td>
+        <td th:text="${s.price}">None</td>
+        <td><a th:href="@{'/AddtoCart/' + ${s.id}}">Add to Cart</a></td>
+
+    </tr>
+
     </thead>
-    <tbody>
-    <!-- Shopping cart items will be added dynamically here -->
-    </tbody>
+
+</table>
+
+<table>
+<tr>Items in Cart</tr>
+
+
 </table>
 
 
 <footer th:replace="~{HeaderAndFooter::footer}">
     Copyright © Vidhi Kalal 991706094
 </footer>
-
-<!-- JavaScript code to handle adding products to shopping cart -->
 <script>
-    // JavaScript code to handle adding products to shopping cart
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all add-to-cart links
-        var addToCartLinks = document.querySelectorAll('.add-to-cart');
-        // Add event listener to each link
-        addToCartLinks.forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                var productId = link.dataset.productId;
-                addToCart(productId);
-            });
-        });
+    // JavaScript to handle adding products to the shopping cart
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartCount = document.querySelector('.cart-count');
+    let itemCount = 0; // Initialize item count
 
-        // Function to add product to shopping cart
-        function addToCart(productId) {
-            // You can implement your logic to add the product to the shopping cart
-            // For demonstration purposes, let's assume it updates the shopping cart table
-            var cartTableBody = document.querySelector('.shopping-cart table tbody');
-            var newRow = document.createElement('tr');
-            newRow.innerHTML = '<td>Product ' + productId + '</td><td>1</td>'; // Example row
-            cartTableBody.appendChild(newRow);
-        }
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.getAttribute('data-product-id');
+            // Perform actions to add product to shopping cart, e.g., update backend, local storage, etc.
+            itemCount++; // Increment item count
+            cartCount.textContent = itemCount; // Update cart count display
+
+
+        });
     });
 </script>
+
+
+
 
 </body>
 </html>

@@ -35,6 +35,9 @@
         }
     </style>
 </head>
+<header th:replace="~{HeaderAndFooter::Header}">
+    <h1>Vidhi's Store</h1>
+</header>
 <body>
 <div class="container">
     <h1>Checkout Page</h1>
@@ -47,6 +50,10 @@
         Total: $<span id="total">0.00</span><br/>
     </div>
 </div>
+</body>
+<footer th:replace="~{HeaderAndFooter::footer}">
+    Copyright © Vidhi Kalal 991706094
+</footer>
 <script>
     // Sample data - replace this with actual product data
     const products = [
@@ -72,6 +79,6 @@
     const total = subtotal + saleTax;
     document.getElementById('total').textContent = total.toFixed(2);
 </script>
-</body>
+
 </html>
 

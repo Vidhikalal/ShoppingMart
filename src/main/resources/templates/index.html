@@ -34,23 +34,16 @@
     </head>
 
 
-    <header th:replace="~{HeaderAndFooter::Header}">
-        <h1>Vidhi's Store</h1>
-    </header>
 
 
 <body>
+<header th:replace="~{HeaderAndFooter::Header}">
+    <h1>Vidhi's Store</h1>
+</header>
 
 <div class="content">
     <h1>Welcome to Our Online Store</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Homepage</a></li>
-            <li><a href="/product.html">Product</a></li>
-            <li><a href="shopping.html">Shopping </a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-        </ul>
-    </nav>
+
     <img src="Images/shoppingstore.png" alt="Welcome Image">
 
     <footer th:replace="~{HeaderAndFooter::footer}">
