@@ -5,10 +5,7 @@ import ca.sheridancollege.kalalv.sheridan_kalalv_assignment1.database.ProductRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -34,20 +31,20 @@ public class HomeControllers {
        model.addAttribute("product",new Products());
        return "product";
    }
-   @GetMapping()
-   public String getShopping(Model model){
-       model.addAttribute("productList", pr.getAllProducts());
-       model.addAttribute("product",new Products());
-       return "shopping";
-   }
-   @GetMapping("/AddtoCart/{id}")
-   public String addToCart(Model model, @PathVariable long id){
-     Products product=pr.getProductById(id);
-      pr.addToCart(product);
-       model.addAttribute("productList", pr.getAllProducts());
-       model.addAttribute("product",new Products());
-      return "shopping";
-   }
+    @PostMapping("/addToCart")
+    public String addToCart(Model model, @RequestParam("productId") Long productId) {
+
+        model.addAttribute("cartSize",pr.getCartSize());
+        return "redirect:/shopping";
+    }
+    @GetMapping("/shopping")
+    public String getShopping(Model model) {
+        model.addAttribute("productList", pr.getAllProducts());
+        model.addAttribute("product", new Products());
+        model.addAttribute("cartSize", pr.getCartSize());
+        return "shopping";
+    }
+
 //   @PostMapping("/shopping")
 ////   public String shopping(Model model){
 ////       model.addAttribute("productList", pr.getAllProducts());
@@ -55,7 +52,9 @@ public class HomeControllers {
 ////       return "shopping";
 ////   }
    @GetMapping("/checkout")
-    public String checkout(){
+    public String checkout(Model model){
+       model.addAttribute("productList", pr.getAllProducts());
+       model.addAttribute("product", new Products());
       return "checkout";
     }
 }

@@ -1,43 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{css/header.css}">
+    <link rel="stylesheet" href="../static/css/footer.css" th:href="@{css/footer.css}">
+    <title>Shopping Store</title>
 
 
+    <style>
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-<style>
-    /* Add your CSS styles here */
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+        nav ul li:last-child {
+            margin-right: 0;
+        }
 
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .add-to-cart {
-        text-decoration: none;
-        background-color: #4CAF50;
-        color: white;
-        padding: 6px 10px;
-        border-radius: 5px;
-    }
-
-    .cart-count {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background-color: #4CAF50;
-        color: white;
-        padding: 6px 10px;
-        border-radius: 50%;
-    }
-</style>
+        nav ul li a {
+            text-decoration: none;
+        }
+    </style>
 <body>
 <header th:replace="~{HeaderAndFooter::Header}">
     <h1>Vidhi's Store</h1>
@@ -64,6 +54,7 @@
 
 <table>
 <tr>Items in Cart</tr>
+<td th:text="${cartSize}">0</td>
 
 
 </table>
@@ -72,23 +63,23 @@
 <footer th:replace="~{HeaderAndFooter::footer}">
     Copyright © Vidhi Kalal 991706094
 </footer>
-<script>
-    // JavaScript to handle adding products to the shopping cart
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    const cartCount = document.querySelector('.cart-count');
-    let itemCount = 0; // Initialize item count
+<!--<script>-->
+<!--    // JavaScript to handle adding products to the shopping cart-->
+<!--    const addToCartButtons = document.querySelectorAll('.add-to-cart');-->
+<!--    const cartCount = document.querySelector('.cart-count');-->
+<!--    let itemCount = 0; // Initialize item count-->
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.getAttribute('data-product-id');
-            // Perform actions to add product to shopping cart, e.g., update backend, local storage, etc.
-            itemCount++; // Increment item count
-            cartCount.textContent = itemCount; // Update cart count display
+<!--    addToCartButtons.forEach(button => {-->
+<!--        button.addEventListener('click', () => {-->
+<!--            const productId = button.getAttribute('data-product-id');-->
+<!--            // Perform actions to add product to shopping cart, e.g., update backend, local storage, etc.-->
+<!--            itemCount++; // Increment item count-->
+<!--            cartCount.textContent = itemCount; // Update cart count display-->
 
 
-        });
-    });
-</script>
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 
 

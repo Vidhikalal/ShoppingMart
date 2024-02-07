@@ -4,6 +4,3 @@ CREATE TABLE PRODUCTS
     name VARCHAR(255),
     price DECIMAL(10,2) NOT NULL
 );
-
-
-

@@ -2,6 +2,7 @@ package ca.sheridancollege.kalalv.sheridan_kalalv_assignment1.database;
 
 import ca.sheridancollege.kalalv.sheridan_kalalv_assignment1.beans.Products;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,13 +25,13 @@ import java.util.List;
 //    List<Products> findAllProductDetails();
 //}
 @Repository
-public class ProductRepo{
+public class ProductRepo {
     @Autowired
     NamedParameterJdbcTemplate jdbc;
 
     public Products getProductById(Long id) {
         MapSqlParameterSource mpl = new MapSqlParameterSource();
-        String q ="select * from products where id = :id";
+        String q = "select * from products where id = :id";
         mpl.addValue("id", id);
         List<Products> sList = jdbc.query(q, mpl, new BeanPropertyRowMapper<Products>(Products.class));
 
@@ -38,6 +39,7 @@ public class ProductRepo{
 
 
     }
+
     public List<Products> getAllProducts() {
         String sql = "SELECT * FROM products";
 
@@ -54,18 +56,12 @@ public class ProductRepo{
 
         jdbc.update(sql, params);
     }
-    public void addToCart(Products product) {
 
-        String sql = "INSERT INTO CART (name, price, Id) VALUES (:name, :price, :Id)";
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", product.getName());
-        params.addValue("price", product.getPrice());
-        params.addValue("Id", product.getId());
-
-        jdbc.update(sql, params);
+    public int getCartSize() {
+        String sql = "SELECT COUNT(*) FROM PRODUCTS"; // Assuming you have a table named shopping_cart
+        return jdbc.queryForObject(sql, new MapSqlParameterSource(), Integer.class);
     }
 
-
-
 }
+
 
