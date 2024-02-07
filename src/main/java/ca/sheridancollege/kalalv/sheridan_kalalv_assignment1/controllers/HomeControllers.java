@@ -18,17 +18,17 @@ public class HomeControllers {
 
    @GetMapping("/product")
     public String getProduct(Model model){
-      model.addAttribute("productList", ProductRepo.findAll());
+//      model.addAttribute("productList", ProductRepo.findAll());
       model.addAttribute("product",new Products());
       return "product";
    }
-   @PostMapping("/product")
-   public ModelAndView AddProduct(Model model, @ModelAttribute Products product){
-       ProductRepo.save(product);
-       ModelAndView modelAndView = new ModelAndView("inserProducts", "ProductList", ProductRepo.findAll());
-       modelAndView.addObject("product", new Products());
-       return modelAndView;
-   }
+//   @PostMapping("/product")
+//   public ModelAndView AddProduct(Model model, @ModelAttribute Products product){
+//       ProductRepo.save(product);
+//       ModelAndView modelAndView = new ModelAndView("inserProducts", "ProductList", ProductRepo.findAll());
+//       modelAndView.addObject("product", new Products());
+//       return modelAndView;
+//   }
    @PostMapping("/shopping")
    public String shopping(){
       return "shopping";

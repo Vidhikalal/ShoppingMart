@@ -36,14 +36,19 @@
     <h1>Vidhi's Store</h1>
     <nav>
         <ul>
-            <li><a href="index.html">Home Page</a></li>
+            <li><a href="/">Home Page</a></li>
             <li><a href="product.html">Product</a></li>
             <li><a href="shopping.html">Shopping</a></li>
             <li><a href="checkout.html">Checkout</a></li>
         </ul>
     </nav>
-    <table id="productTable">
-        <!-- Your table rows go here -->
+
+    <table th:if="${productList != null && productList != ' '}">
+        <tr th:each="s : ${productList}">
+            <td th:text="${s.id}">None</td>
+            <td th:text="${s.name}">None</td>
+            <td th:text="${s.price}">None</td>
+        </tr>
     </table>
     <form method="post" action="#" th:action="@{/addProduct}"
           th:object="${product}">
